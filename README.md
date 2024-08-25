@@ -1,8 +1,9 @@
 # github-planter
 
+GitHubのActivity(↓の図のやつ)に草生やすやつ.
+
 <img src="./github_activity_001.png" width="600px"/>
 
-GitHubのActivityに草生やすやつ.
 
 
 ## Summary
