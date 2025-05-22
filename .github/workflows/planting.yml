@@ -6,7 +6,7 @@ name: planting
 on:
   # Cron job
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */6 * * *'  # 6時間ごとに実行
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,15 +23,21 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Create new change
-        run: echo $(date) > log.txt
-
-      # Runs a set of commands using the runners shell
-      - name: Create new commit
+      - name: Repeat changes and commits
         run: |
-          git config user.name  aazw
-          git config user.email 3594744+aazw@users.noreply.github.com
-          git add log.txt 
-          git commit -m "new commit by github actions at $(date '+%Y-%m-%dT%H:%M:%S%z')" 
+          # Git のユーザー情報設定
+          git config user.name  "aazw"
+          git config user.email "3594744+aazw@users.noreply.github.com"
+
+          # 繰り返し回数を指定（6回）
+          for i in $(seq 1 6); do
+            # 新しい変更を作成
+            echo $(date) > log.txt
+
+            # 変更をステージしコミット
+            git add log.txt
+            git commit -m "New commit #$i by GitHub Actions at $(date '+%Y-%m-%dT%H:%M:%S%z')"
+          done
+      
+          # リモートにプッシュ
           git push
