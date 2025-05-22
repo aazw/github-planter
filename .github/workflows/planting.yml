@@ -36,7 +36,7 @@ jobs:
 
             # 変更をステージしコミット
             git add log.txt
-            git commit -m "New commit #$i by GitHub Actions at $(date '+%Y-%m-%dT%H:%M:%S%z')"
+            git commit -m "New commit by GitHub Actions at $(date '+%Y-%m-%dT%H:%M:%S%z')"
 
             # log.txtには秒までしか出力してないので、1秒以上待たないと変化が出ないのでダメ
             sleep 1.1
