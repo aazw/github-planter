@@ -1,4 +1,4 @@
-name: planting
+name: Capture screenshot
 
 on:
   # 毎日1時に実行
