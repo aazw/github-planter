@@ -49,7 +49,7 @@ jobs:
       - name: Build image and push
         uses: docker/build-push-action@v6
         with:
-          context: ./app/capture_screenshot/
+          context: ./apps/capture_screenshot/
           file: Dockerfile
           push: true
           tags: |
