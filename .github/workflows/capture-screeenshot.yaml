@@ -1,0 +1,38 @@
+name: planting
+
+on:
+  # 毎日1時に実行
+  schedule:
+    - cron: "0 1 * * *"
+  # webから実行
+  workflow_dispatch:
+
+jobs:
+  capture-screenshot:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/aazw/github_planter_capture_screenshot:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - run: capture-screenshot
+      - name: Commit and push changes if needed
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            
+            # 1. 変更をコミット
+            git commit -am "new contributions.png"
+
+            # 2. 最新リモートを取得してリベース（競合時に備えautostash）
+            git pull --rebase --autostash origin "$GITHUB_HEAD_REF"
+
+            # 3. リベース結果を force-with-lease で安全に push
+            git push --force-with-lease origin HEAD:"$GITHUB_HEAD_REF"
+          else
+            echo "No changes to commit."
+          fi
