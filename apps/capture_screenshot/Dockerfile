@@ -17,3 +17,9 @@ RUN playwright install --with-deps
 WORKDIR /app/
 COPY pyproject.toml uv.lock .python-version main.py /app/
 RUN uv sync
+
+RUN uv tool install .
+ENV PATH=/root/.local/bin:$PATH
+
+WORKDIR /workspace
+ENTRYPOINT ["capture-scheenshot"]
