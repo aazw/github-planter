@@ -14,7 +14,7 @@ jobs:
   detect-changes:
     runs-on: ubuntu-latest
     outputs:
-      app_capture_screenshot: ${{ steps.filter.outputs.app_capture_screenshot }}
+      apps_capture_screenshot: ${{ steps.filter.outputs.apps_capture_screenshot }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -25,13 +25,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           filters: |
-            app_capture_screenshot:
-              - "app/capture_screenshot/**"
+            apps_capture_screenshot:
+              - "apps/capture_screenshot/**/*"
 
   build-capture-screenshot:
     needs:
       - detect-changes
-    if: needs.detect-changes.outputs.app_capture_screenshot == 'true'
+    if: needs.detect-changes.outputs.apps_capture_screenshot == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
