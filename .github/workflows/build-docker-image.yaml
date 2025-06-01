@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./apps/capture_screenshot/
-          file: Dockerfile
+          file: ./apps/capture_screenshot/Dockerfile
           push: true
           tags: |
             ghcr.io/aazw/github_planter_capture_screenshot:${{ github.sha }}-${{ github.run_number }}
