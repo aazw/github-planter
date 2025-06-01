@@ -6,7 +6,7 @@ on:
       - main
       - master
     paths:
-      - "app/capture_screenshot/**"
+      - "apps/capture_screenshot/**/*"
 
   workflow_dispatch:
 
