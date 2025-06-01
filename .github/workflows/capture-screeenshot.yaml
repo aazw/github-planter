@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/aazw/github_planter_capture_screenshot:latest
+      options: --user root
     steps:
       - uses: actions/checkout@v4
         with:
