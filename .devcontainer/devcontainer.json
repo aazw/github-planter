@@ -11,10 +11,17 @@
       "extensions": [
         "emeraldwalk.runonsave",
         "ms-azuretools.vscode-containers",
-        "ms-azuretools.vscode-docker"
+        "ms-azuretools.vscode-docker",
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "tamasfe.even-better-toml"
       ],
       "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.analysis.extraPaths": [
+          "/home/vscode/venv/lib/python3.11/site-packages/"
+        ]
       }
     }
   },

@@ -2,9 +2,7 @@
 
 GitHubのActivity(↓の図のやつ)に草生やすやつ.
 
-<img src="./github_activity_001.png" width="600px"/>
-
-
+<img src="./apps/capture_screenshot/contributions.png" width="600px"/>
 
 ## Summary
 

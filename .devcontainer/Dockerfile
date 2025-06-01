@@ -13,6 +13,7 @@ ARG DOCKER_GO_VERSION=1.24.3-bookworm
 ARG DOCKER_NODE_VERSION=22.16.0-bookworm
 ARG DOCKER_JQ_VERSION=1.7.1
 ARG DOCKER_YQ_VERSION=4.45.4
+ARG DOCKER_TAPLO_VERSION=0.10.0
 
 # for go install
 ARG GO_DOCKERFMT_VERSION=v0.3.7
@@ -22,6 +23,10 @@ ARG GO_GO_TASK_VERSION=v3.43.3
 # for npm tools
 ARG NPM_PRETTIER_VERSION=3.5.3
 ARG NPM_RENOVATE_VERSION=40.36.8
+
+# for pip tools
+ARG PIP_UV_VERSION=0.7.9
+ARG PIP_PLAYWRIGHT_VERSION=1.52.0
 
 # ##########################################################################################
 # builder images
@@ -62,6 +67,12 @@ FROM ghcr.io/jqlang/jq:${DOCKER_JQ_VERSION} AS jq-builder
 # https://hub.docker.com/r/mikefarah/yq
 FROM mikefarah/yq:${DOCKER_YQ_VERSION} AS yq-builder
 
+# taplo
+# https://github.com/tamasfe/taplo
+# https://taplo.tamasfe.dev/
+# https://hub.docker.com/r/tamasfe/taplo
+FROM tamasfe/taplo:${DOCKER_TAPLO_VERSION} AS taplo-builder
+
 # ##########################################################################################
 # main image
 # ##########################################################################################
@@ -69,6 +80,7 @@ FROM mikefarah/yq:${DOCKER_YQ_VERSION} AS yq-builder
 # debian
 # https://hub.docker.com/_/debian
 FROM debian:${DOCKER_DEBIAN_VERSION}
+ENV DEBIAN_FRONTEND=noninteractive
 
 # dockerfmt
 # refs above
@@ -99,6 +111,10 @@ COPY --from=jq-builder /jq /usr/local/bin/
 # refs above
 COPY --from=yq-builder /usr/bin/yq /usr/local/bin/
 
+# taplo
+# refs above
+COPY --from=taplo-builder /taplo /usr/local/bin/
+
 # prettier
 # https://prettier.io/docs/install
 ARG NPM_PRETTIER_VERSION
@@ -109,6 +125,13 @@ RUN yarn global add prettier@${NPM_PRETTIER_VERSION}
 # https://www.npmjs.com/package/renovate
 ARG NPM_RENOVATE_VERSION
 RUN yarn global add renovate@${NPM_RENOVATE_VERSION}
+
+# python and pipx
+# pipx: https://github.com/pypa/pipx
+RUN apt-get update -y && apt-get install -y --no-install-recommends python3 python3-pip python-is-python3 pipx \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+RUN pipx ensurepath
 
 # add vscode user
 # https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user#_creating-a-nonroot-user
@@ -123,3 +146,20 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL >/etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 USER $USERNAME
+
+# venv
+RUN python -m venv /home/vscode/venv
+ENV PATH=/home/vscode/venv/bin:$PATH
+
+# uv
+# https://github.com/astral-sh/uv
+# https://pypi.org/project/uv/
+ARG PIP_UV_VERSION
+RUN pip install uv==${PIP_UV_VERSION}
+
+# playwright
+# https://github.com/microsoft/playwright-python
+# https://pypi.org/project/playwright/
+ARG PIP_PLAYWRIGHT_VERSION
+RUN pip install playwright==${PIP_PLAYWRIGHT_VERSION}
+RUN playwright install --with-deps

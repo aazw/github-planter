@@ -31,7 +31,16 @@
         // JSONのフォーマット
         "match": "\\.json$",
         "cmd": "prettier -w \"${file}\""
+      },
+      {
+        // TOMLのフォーマット
+        "match": "\\.toml$",
+        "cmd": "taplo fmt \"${file}\""
       }
     ]
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
   }
 }

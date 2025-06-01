@@ -1,0 +1,58 @@
+name: "Build docker image"
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "app/capture_screenshot/**"
+
+  workflow_dispatch:
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      app_capture_screenshot: ${{ steps.filter.outputs.app_capture_screenshot }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filters: |
+            app_capture_screenshot:
+              - "app/capture_screenshot/**"
+
+  build-capture-screenshot:
+    needs:
+      - detect-changes
+    if: needs.detect-changes.outputs.app_capture_screenshot == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{secrets.GIT_SUBMODULE_TOKEN}}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: aazw
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build image and push
+        uses: docker/build-push-action@v3
+        with:
+          context: ./app/capture_screenshot/
+          file: Dockerfile
+          push: true
+          tags: |
+            ghcr.io/aazw/github_planter_capture_screenshot:${{ github.sha }}-${{ github.run_number }}
+            ghcr.io/aazw/github_planter_capture_screenshot:latest

@@ -50,6 +50,24 @@
       "datasourceTemplate": "npm",
       "depNameTemplate": "renovate",
       "versioningTemplate": "npm"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+PIP_UV_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "pypi",
+      "depNameTemplate": "uv",
+      "versioningTemplate": "pep440"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^\\.devcontainer\\/Dockerfile$/"],
+      "matchStringsStrategy": "any",
+      "matchStrings": ["ARG\\s+PIP_PLAYWRIGHT_VERSION=(?<currentValue>\\S+)"],
+      "datasourceTemplate": "pypi",
+      "depNameTemplate": "playwright",
+      "versioningTemplate": "pep440"
     }
   ],
   "packageRules": [
