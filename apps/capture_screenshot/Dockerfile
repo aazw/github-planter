@@ -22,4 +22,6 @@ RUN uv tool install .
 ENV PATH=/root/.local/bin:$PATH
 
 WORKDIR /workspace
+ENV PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=false
 ENTRYPOINT ["capture-screenshot"]
