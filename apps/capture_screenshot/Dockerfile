@@ -22,4 +22,4 @@ RUN uv tool install .
 ENV PATH=/root/.local/bin:$PATH
 
 WORKDIR /workspace
-# ENTRYPOINT ["capture-scheenshot"]
+ENTRYPOINT ["capture-screenshot"]
