@@ -1,9 +1,9 @@
 name: Capture screenshot
 
 on:
-  # 毎日1時に実行
+  # 毎週月曜日9時(JST)に実行
   schedule:
-    - cron: "0 1 * * *"
+    - cron: "0 0 * * 1" # UTC
   # webから実行
   workflow_dispatch:
 
