@@ -17,4 +17,4 @@ build-backend = "hatchling.build"
 packages = ["."]
 
 [project.scripts]
-capture-scheenshot = "main:main"
+capture-screenshot = "main:main"
