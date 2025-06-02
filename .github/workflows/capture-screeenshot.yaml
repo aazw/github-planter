@@ -23,19 +23,18 @@ jobs:
           fetch-depth: 0
       - run: capture-screenshot
       - name: Commit and push changes if needed
+        shell: bash
         run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config user.name  "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            
-            # 1. 変更をコミット
-            git commit -am "new contributions.png"
+          # Git設定
+          git config --global --add safe.directory /__w/github-planter/github-planter
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-            # 2. 最新リモートを取得してリベース（競合時に備えautostash）
-            git pull --rebase --autostash origin "$GITHUB_HEAD_REF"
-
-            # 3. リベース結果を force-with-lease で安全に push
-            git push --force-with-lease origin HEAD:"$GITHUB_HEAD_REF"
-          else
+          # 変更があればコミット・プッシュ
+          if git diff --quiet; then
             echo "No changes to commit."
+          else
+            git add -A
+            git commit -m "new contributions.png"
+            git push origin HEAD
           fi
