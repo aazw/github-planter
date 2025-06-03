@@ -22,10 +22,10 @@ ARG GO_GO_TASK_VERSION=v3.43.3
 
 # for npm tools
 ARG NPM_PRETTIER_VERSION=3.5.3
-ARG NPM_RENOVATE_VERSION=40.39.0
+ARG NPM_RENOVATE_VERSION=40.40.1
 
 # for pip tools
-ARG PIP_UV_VERSION=0.7.9
+ARG PIP_UV_VERSION=0.7.10
 ARG PIP_PLAYWRIGHT_VERSION=1.52.0
 
 # ##########################################################################################
