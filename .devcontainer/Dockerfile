@@ -9,7 +9,7 @@
 ARG DOCKER_DEBIAN_VERSION=bookworm
 
 # for builder images
-ARG DOCKER_GO_VERSION=1.24.3-bookworm
+ARG DOCKER_GO_VERSION=1.24.4-bookworm
 ARG DOCKER_NODE_VERSION=22.16.0-bookworm
 ARG DOCKER_JQ_VERSION=1.8.0
 ARG DOCKER_YQ_VERSION=4.45.4
@@ -22,10 +22,10 @@ ARG GO_GO_TASK_VERSION=v3.43.3
 
 # for npm tools
 ARG NPM_PRETTIER_VERSION=3.5.3
-ARG NPM_RENOVATE_VERSION=40.40.2
+ARG NPM_RENOVATE_VERSION=40.42.4
 
 # for pip tools
-ARG PIP_UV_VERSION=0.7.10
+ARG PIP_UV_VERSION=0.7.11
 ARG PIP_PLAYWRIGHT_VERSION=1.52.0
 
 # ##########################################################################################
