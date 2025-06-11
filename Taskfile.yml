@@ -1,0 +1,24 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars: {}
+
+tasks:
+  list:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - task --list-all
+    silent: true
+
+  remove_ds_store:
+    dir: "{{ .TASKFILE_DIR }}"
+    cmds:
+      - ./scripts/remove_ds_store.sh
+    silent: true
+
+  uv_sync:
+    dir: "{{ .TASKFILE_DIR }}/apps/"
+    cmds:
+      - uv sync --link-mode=copy
+    silent: true

@@ -11,7 +11,7 @@ jobs:
   capture-screenshot:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/aazw/github_planter_capture_screenshot:latest
+      image: ghcr.io/aazw/github_planter_apps:latest
       options: --user root
       env:
         HOME: /root
@@ -21,7 +21,8 @@ jobs:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
-      - run: capture-screenshot
+      - name: Capture Screenshot
+        run: uv run src/capture_screenshot.py
       - name: Commit and push changes if needed
         shell: bash
         run: |

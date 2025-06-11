@@ -19,9 +19,7 @@
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
-        "python.analysis.extraPaths": [
-          "/home/vscode/venv/lib/python3.11/site-packages/"
-        ]
+        "python.defaultInterpreterPath": "${containerWorkspaceFolder}/apps/.venv/bin/python"
       }
     }
   },

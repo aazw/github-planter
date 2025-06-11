@@ -81,6 +81,16 @@ FROM tamasfe/taplo:${DOCKER_TAPLO_VERSION} AS taplo-builder
 # https://hub.docker.com/_/debian
 FROM debian:${DOCKER_DEBIAN_VERSION}
 ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NOWARNINGS=yes
+
+# add distribution packages
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    wget \
+    git \
+    nano \
+    less
 
 # dockerfmt
 # refs above
@@ -128,7 +138,12 @@ RUN yarn global add renovate@${NPM_RENOVATE_VERSION}
 
 # python and pipx
 # pipx: https://github.com/pypa/pipx
-RUN apt-get update -y && apt-get install -y --no-install-recommends python3 python3-pip python-is-python3 pipx \
+RUN apt-get update -y && apt-get install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    python3-venv \
+    python-is-python3 \
+    pipx \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 RUN pipx ensurepath

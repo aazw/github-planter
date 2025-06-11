@@ -78,6 +78,15 @@
     {
       "matchFileNames": [".github/workflows/*.yaml"],
       "groupName": "githubactions"
+    },
+    {
+      "matchFileNames": [
+        "apps/.python-version",
+        "apps/pyproject.toml",
+        "apps/uv.lock",
+        "apps/Dockerfile"
+      ],
+      "groupName": "python"
     }
   ]
 }

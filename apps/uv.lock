@@ -24,9 +24,9 @@ wheels = [
 ]
 
 [[package]]
-name = "github-planter-capture-screenshot"
+name = "github-planter-apps"
 version = "0.1.0"
-source = { editable = "." }
+source = { virtual = "." }
 dependencies = [
     { name = "click" },
     { name = "playwright" },
