@@ -28,6 +28,7 @@ jobs:
             apps:
               - "apps/**/*"
 
+  # playwrightインストール済みイメージの作成 (インストールに時間がかかる)
   build-apps:
     needs:
       - detect-changes
