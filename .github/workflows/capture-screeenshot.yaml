@@ -10,21 +10,20 @@ on:
 jobs:
   capture-screenshot:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/aazw/github_planter_apps:latest
-      options: --user root
-      env:
-        HOME: /root
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install packages
+        working-directory: apps
+        run: uv sync --link-mode=copy
       - name: Capture Screenshot
-        run: |
-          cd apps
-          uv run src/capture_screenshot.py --output ../contributions.png
+        working-directory: apps
+        run: uv run src/capture_screenshot.py --output ../contributions.png
       - name: Commit and push changes if needed
         shell: bash
         run: |
