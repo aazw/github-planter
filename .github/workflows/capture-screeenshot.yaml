@@ -21,13 +21,10 @@ jobs:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
-      - name: List files
-        run: |
-          pwd
-          ls -la
-          ls -la src/
       - name: Capture Screenshot
-        run: uv run python ./src/capture_screenshot.py
+        run: |
+          cd apps
+          uv run src/capture_screenshot.py --output ../contributions.png
       - name: Commit and push changes if needed
         shell: bash
         run: |
