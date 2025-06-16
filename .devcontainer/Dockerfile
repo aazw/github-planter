@@ -11,6 +11,7 @@ ARG DOCKER_DEBIAN_VERSION=bookworm
 # for builder images
 ARG DOCKER_GO_VERSION=1.24.4-bookworm
 ARG DOCKER_NODE_VERSION=22.16.0-bookworm
+ARG DOCKER_PYTHON_VERSION=3.13-bookworm
 ARG DOCKER_JQ_VERSION=1.8.0
 ARG DOCKER_YQ_VERSION=4.45.4
 ARG DOCKER_TAPLO_VERSION=0.10.0
@@ -56,6 +57,15 @@ RUN go install github.com/go-task/task/v3/cmd/task@${GO_GO_TASK_VERSION}
 # https://hub.docker.com/_/node
 # https://note.milldea.com/posts/two-ways-to-install-nodejs-with-fixed-version-in-dockerfile
 FROM node:${DOCKER_NODE_VERSION} AS node-builder
+
+# python
+# https://hub.docker.com/_/python
+FROM python:${DOCKER_PYTHON_VERSION} AS python-builder
+RUN mkdir -p /python-install \
+    && cp -r /usr/local/bin /python-install/ \
+    && cp -r /usr/local/lib /python-install/ \
+    && cp -r /usr/local/include /python-install/ \
+    && rm -rf /python-install/lib/pkgconfig
 
 # jq
 # https://github.com/mikefarah/yq
@@ -113,6 +123,13 @@ RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs \
     && ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npx
 RUN npm install -g yarn
 
+# python
+# refs above
+RUN apt-get update -y && apt-get install -y expat
+COPY --from=python-builder /python-install/bin/ /usr/local/bin/
+COPY --from=python-builder /python-install/lib/ /usr/local/lib/
+COPY --from=python-builder /python-install/include/ /usr/local/include/
+
 # jq
 # refs above
 COPY --from=jq-builder /jq /usr/local/bin/
@@ -136,17 +153,18 @@ RUN yarn global add prettier@${NPM_PRETTIER_VERSION}
 ARG NPM_RENOVATE_VERSION
 RUN yarn global add renovate@${NPM_RENOVATE_VERSION}
 
-# python and pipx
-# pipx: https://github.com/pypa/pipx
-RUN apt-get update -y && apt-get install -y --no-install-recommends \
-    python3 \
-    python3-pip \
-    python3-venv \
-    python-is-python3 \
-    pipx \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-RUN pipx ensurepath
+# uv
+# https://github.com/astral-sh/uv
+# https://pypi.org/project/uv/
+ARG PIP_UV_VERSION
+RUN pip install uv==${PIP_UV_VERSION}
+
+# playwright
+# https://github.com/microsoft/playwright-python
+# https://pypi.org/project/playwright/
+ARG PIP_PLAYWRIGHT_VERSION
+RUN pip install playwright==${PIP_PLAYWRIGHT_VERSION}
+RUN playwright install --with-deps
 
 # add vscode user
 # https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user#_creating-a-nonroot-user
@@ -161,20 +179,3 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL >/etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 USER $USERNAME
-
-# venv
-RUN python -m venv /home/vscode/venv
-ENV PATH=/home/vscode/venv/bin:$PATH
-
-# uv
-# https://github.com/astral-sh/uv
-# https://pypi.org/project/uv/
-ARG PIP_UV_VERSION
-RUN pip install uv==${PIP_UV_VERSION}
-
-# playwright
-# https://github.com/microsoft/playwright-python
-# https://pypi.org/project/playwright/
-ARG PIP_PLAYWRIGHT_VERSION
-RUN pip install playwright==${PIP_PLAYWRIGHT_VERSION}
-RUN playwright install --with-deps
