@@ -20,7 +20,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+          fetch-depth: 1
       - name: Capture Screenshot
         run: uv run src/capture_screenshot.py
       - name: Commit and push changes if needed
