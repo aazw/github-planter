@@ -24,6 +24,8 @@ ARG GO_GO_TASK_VERSION=v3.44.0
 # for npm tools
 ARG NPM_PRETTIER_VERSION=3.5.3
 ARG NPM_RENOVATE_VERSION=40.56.1
+ARG NPM_CLAUDE_CODE_VERSION=1.0.24
+ARG NPM_CCUSAGE_VERSION=0.8.0
 
 # for pip tools
 ARG PIP_UV_VERSION=0.7.13
@@ -152,6 +154,37 @@ RUN yarn global add prettier@${NPM_PRETTIER_VERSION}
 # https://www.npmjs.com/package/renovate
 ARG NPM_RENOVATE_VERSION
 RUN yarn global add renovate@${NPM_RENOVATE_VERSION}
+
+# claude-code
+# https://github.com/anthropics/claude-code
+# https://github.com/anthropics/claude-code/blob/main/.devcontainer/devcontainer.json
+# https://github.com/anthropics/claude-code/blob/main/.devcontainer/Dockerfile
+# https://github.com/anthropics/claude-code/blob/main/.devcontainer/init-firewall.sh
+RUN apt-get update -y && apt-get install -y \
+    less \
+    git \
+    procps \
+    sudo \
+    fzf \
+    zsh \
+    man-db \
+    unzip \
+    gnupg2 \
+    gh \
+    iptables \
+    ipset \
+    iproute2 \
+    dnsutils \
+    aggregate
+ARG NPM_CLAUDE_CODE_VERSION
+RUN npm install -g @anthropic-ai/claude-code@${NPM_CLAUDE_CODE_VERSION}
+ENV DEVCONTAINER=true
+
+## ccusage
+# https://github.com/ryoppippi/ccusage
+# https://www.npmjs.com/package/ccusage
+ARG NPM_CCUSAGE_VERSION
+RUN npm install -g ccusage@${NPM_CCUSAGE_VERSION}
 
 # uv
 # https://github.com/astral-sh/uv
