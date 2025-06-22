@@ -17,7 +17,7 @@ RUN playwright install --with-deps
 WORKDIR /app/
 COPY pyproject.toml uv.lock .python-version /app/
 COPY src /app/src
-RUN uv sync
+RUN uv sync --link-mode=copy --frozen
 
 ENV PATH=/root/.local/bin:$PATH
 

@@ -1,15 +1,15 @@
 import click
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, Playwright, Browser, BrowserContext, Page
 
 
-def run(playwright, url: str, output: str):
-    browser = playwright.chromium.launch(headless=True)
-    context = browser.new_context(
+def run(playwright: Playwright, url: str, output: str) -> None:
+    browser: Browser = playwright.chromium.launch(headless=True)
+    context: BrowserContext = browser.new_context(
         color_scheme="dark",
         device_scale_factor=2,
     )
 
-    page = context.new_page()
+    page: Page = context.new_page()
     page.goto(url)
 
     page.locator('div[data-graph-url="/users/aazw/contributions"]').screenshot(
@@ -24,7 +24,7 @@ def run(playwright, url: str, output: str):
 @click.command()
 @click.option("--output", type=str, default="./contributions.png", help="")
 @click.option("--url", type=str, default="https://github.com/aazw", help="")
-def main(url: str, output: str):
+def main(url: str, output: str) -> None:
     with sync_playwright() as playwright:
         run(playwright, url, output)
 
