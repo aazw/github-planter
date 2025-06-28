@@ -38,6 +38,7 @@ ARG OTHER_YQ_VERSION=4.45.4
 ARG OTHER_XQ_VERSION=1.3.0
 ARG OTHER_TAPLO_VERSION=0.10.0
 ARG OTHER_SHELLCHECK_VERSION=v0.10.0
+ARG OTHER_RIPGREP_VERSION=14.1.1
 
 # ##########################################################################################
 # builder images
@@ -204,6 +205,69 @@ RUN pip install ruff==${PIP_RUFF_VERSION}
 ARG PIP_PLAYWRIGHT_VERSION
 RUN pip install playwright==${PIP_PLAYWRIGHT_VERSION}
 RUN playwright install --with-deps
+
+# jq
+# https://github.com/jqlang/jq
+ARG OTHER_JQ_VERSION
+RUN curl -fsSL -o /jq https://github.com/jqlang/jq/releases/download/jq-${OTHER_JQ_VERSION}/jq-linux-$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
+    && chmod +x /jq \
+    && mv /jq /usr/local/bin/ \
+    && jq --version
+
+# yq
+# https://github.com/mikefarah/yq
+# https://hub.docker.com/r/mikefarah/yq
+ARG OTHER_YQ_VERSION
+RUN curl -fsSL -o /yq https://github.com/mikefarah/yq/releases/download/v${OTHER_YQ_VERSION}/yq_linux_$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/') \
+    && chmod +x /yq \
+    && mv /yq /usr/local/bin/ \
+    && yq --version
+
+# xq
+# https://github.com/sibprogrammer/xq
+ARG OTHER_XQ_VERSION
+RUN curl -fsSL -o /xq.tar.gz https://github.com/sibprogrammer/xq/releases/download/v${OTHER_XQ_VERSION}/xq_${OTHER_XQ_VERSION}_linux_$(uname -m | sed 's/aarch64/arm64/' | sed 's/x86_64/amd64/').tar.gz \
+    && mkdir -p /xq \
+    && tar -xvzf /xq.tar.gz -C /xq/ \
+    && chmod +x /xq/xq \
+    && mv /xq/xq /usr/local/bin/ \
+    && rm /xq.tar.gz \
+    && rm -rf /xq \
+    && xq --version
+
+# taplo
+# https://github.com/tamasfe/taplo
+# https://taplo.tamasfe.dev/
+# https://hub.docker.com/r/tamasfe/taplo
+ARG OTHER_TAPLO_VERSION
+RUN curl -fsSL -o /taplo.gz https://github.com/tamasfe/taplo/releases/download/${OTHER_TAPLO_VERSION}/taplo-linux-$(uname -m | sed 's/arm64/aarch64/' | sed 's/amd64/x86_64/').gz \
+    && gzip -d /taplo.gz \
+    && chmod +x /taplo \
+    && mv /taplo /usr/local/bin/ \
+    && taplo --version
+
+# shellcheck
+# https://github.com/koalaman/shellcheck
+# https://hub.docker.com/r/koalaman/shellcheck
+ARG OTHER_SHELLCHECK_VERSION
+RUN curl -fsSL -o /shellcheck.tar.xz https://github.com/koalaman/shellcheck/releases/download/${OTHER_SHELLCHECK_VERSION}/shellcheck-${OTHER_SHELLCHECK_VERSION}.linux.$(uname -m | sed 's/arm64/aarch64/' | sed 's/amd64/x86_64/').tar.xz \
+    && tar -xvf /shellcheck.tar.xz -C / \
+    && chmod +x /shellcheck-${OTHER_SHELLCHECK_VERSION}/shellcheck \
+    && mv /shellcheck-${OTHER_SHELLCHECK_VERSION}/shellcheck /usr/local/bin/ \
+    && rm /shellcheck.tar.xz \
+    && rm -rf /shellcheck-${OTHER_SHELLCHECK_VERSION} \
+    && shellcheck --version
+
+# ripgrep
+# https://github.com/BurntSushi/ripgrep
+ARG OTHER_RIPGREP_VERSION
+RUN mkdir -p /ripgrep \
+    && curl -fsSL -o /ripgrep/ripgrep.tar.gz -L https://github.com/BurntSushi/ripgrep/releases/download/${OTHER_RIPGREP_VERSION}/ripgrep-${OTHER_RIPGREP_VERSION}-$(uname -m)-unknown-linux-gnu.tar.gz \
+    && cd /ripgrep \
+    && tar -xvzf ripgrep.tar.gz \
+    && mv ripgrep-${OTHER_RIPGREP_VERSION}-$(uname -m)-unknown-linux-gnu/rg /usr/local/bin/ \
+    && chmod +x /usr/local/bin/rg \
+    && rm -rf /ripgrep
 
 # add vscode user
 # https://code.visualstudio.com/remote/advancedcontainers/add-nonroot-user#_creating-a-nonroot-user
