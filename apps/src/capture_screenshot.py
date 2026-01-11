@@ -1,5 +1,11 @@
 import click
-from playwright.sync_api import sync_playwright, Playwright, Browser, BrowserContext, Page
+from playwright.sync_api import (
+    sync_playwright,
+    Playwright,
+    Browser,
+    BrowserContext,
+    Page,
+)
 
 
 def run(playwright: Playwright, url: str, output: str) -> None:

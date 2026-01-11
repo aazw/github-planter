@@ -1,0 +1,121 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2026-01-10T08:02:33Z",
+      "resolved": "github:NixOS/nixpkgs/3146c6aa9995e7351a398e17470e15305e6e18ff?lastModified=1768032153&narHash=sha256-6kD1MdY9fsE6FgSwdnx29hdH2UcBKs3%2F%2BJJleMShuJg%3D"
+    },
+    "playwright@1.56.1": {
+      "last_modified": "2025-12-31T03:27:36Z",
+      "resolved": "github:NixOS/nixpkgs/f665af0cdb70ed27e1bd8f9fdfecaf451260fc55#playwright",
+      "source": "devbox-search",
+      "version": "1.56.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/9w29vmlrby9ya9nya1jv1nl4x3aql00m-playwright-core-1.56.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/9w29vmlrby9ya9nya1jv1nl4x3aql00m-playwright-core-1.56.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xdvd5mkb5hwhbsxnk7dxk52k4z0ba7y2-playwright-core-1.56.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xdvd5mkb5hwhbsxnk7dxk52k4z0ba7y2-playwright-core-1.56.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7f66yd9q9zhng9m3avwa3fwcipq9w6bf-playwright-core-1.56.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/7f66yd9q9zhng9m3avwa3fwcipq9w6bf-playwright-core-1.56.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/p9mcm602w4z48jk6sy8r9n1rmx3cp08i-playwright-core-1.56.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/p9mcm602w4z48jk6sy8r9n1rmx3cp08i-playwright-core-1.56.1"
+        }
+      }
+    },
+    "python313Packages.playwright@1.56.0": {
+      "last_modified": "2025-12-31T03:27:36Z",
+      "resolved": "github:NixOS/nixpkgs/f665af0cdb70ed27e1bd8f9fdfecaf451260fc55#python313Packages.playwright",
+      "source": "devbox-search",
+      "version": "1.56.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7rd83h358wz52ayrw5dyv4mzhgz5mn6g-python3.13-playwright-1.56.0",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/rj1i5m04421726b7sr338i1vb0hxd415-python3.13-playwright-1.56.0-dist"
+            }
+          ],
+          "store_path": "/nix/store/7rd83h358wz52ayrw5dyv4mzhgz5mn6g-python3.13-playwright-1.56.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5yiv07awgan28iy6912b9b4iw2igigkd-python3.13-playwright-1.56.0",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/rgzssc0yn2lgdfiq3ikpkhsnd07i1jbb-python3.13-playwright-1.56.0-dist"
+            }
+          ],
+          "store_path": "/nix/store/5yiv07awgan28iy6912b9b4iw2igigkd-python3.13-playwright-1.56.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/wyylj4n1h1z8xwldify5phkqjm12k6wb-python3.13-playwright-1.56.0",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/yph27vyq04pisqvhglabqvh1i62mdjdx-python3.13-playwright-1.56.0-dist"
+            }
+          ],
+          "store_path": "/nix/store/wyylj4n1h1z8xwldify5phkqjm12k6wb-python3.13-playwright-1.56.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/j4g3r5bllgdcdgf1cjb01zdl4g9si34m-python3.13-playwright-1.56.0",
+              "default": true
+            },
+            {
+              "name": "dist",
+              "path": "/nix/store/gw9yc1kw2rwczi0vihyvpz6qp9733wr6-python3.13-playwright-1.56.0-dist"
+            }
+          ],
+          "store_path": "/nix/store/j4g3r5bllgdcdgf1cjb01zdl4g9si34m-python3.13-playwright-1.56.0"
+        }
+      }
+    }
+  }
+}

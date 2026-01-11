@@ -1,0 +1,29 @@
+[formatter.json]
+command = "prettier"
+options = ["-w"]
+includes = ["*.json"]
+
+[formatter.yaml]
+command = "yamlfmt"
+options = []
+includes = ["*.yaml", "*.yml", ".yamlfmt"]
+
+[formatter.dockerfmt]
+command = "dockerfmt"
+options = ["-n", "-w"]
+includes = ["**/Dockerfile"]
+
+[formatter.shfmt]
+command = "shfmt"
+options = ["-w"]
+includes = ["*.sh"]
+
+[formatter.taplo]
+command = "taplo"
+options = ["fmt"]
+includes = ["*.toml"]
+
+[formatter.ruff]
+command = "uv"
+options = ["run", "ruff", "format"]
+includes = ["*.py"]
