@@ -19,8 +19,8 @@
     "**/.git": true,
     // devbox
     "**/.devbox": true,
-    // claude home
-    "**/.claude-home-cache": true,
+    // devcontainer caches
+    "**/.devcontainer/.state/**": true,
     // python,
     "**/.venv/**": true,
     "**/__pycache__/**": true
@@ -31,10 +31,8 @@
     "**/.git/**": true,
     // devbox
     "**/.devbox/**": true,
-    // claude
-    "**/.claude-home-cache/**": true,
-    // codex
-    "**/.codex/**": true,
+    // devcontainer caches
+    "**/.devcontainer/.state/**": true,
     // python
     "**/.venv/**": true,
     "**/__pycache__/**": true
