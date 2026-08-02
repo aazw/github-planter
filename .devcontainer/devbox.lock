@@ -5,115 +5,115 @@
       "last_modified": "2026-01-10T08:02:33Z",
       "resolved": "github:NixOS/nixpkgs/3146c6aa9995e7351a398e17470e15305e6e18ff?lastModified=1768032153&narHash=sha256-6kD1MdY9fsE6FgSwdnx29hdH2UcBKs3%2F%2BJJleMShuJg%3D"
     },
-    "playwright@1.57.0": {
-      "last_modified": "2026-01-09T13:41:53Z",
-      "resolved": "github:NixOS/nixpkgs/5f02c91314c8ba4afe83b256b023756412218535#playwright",
+    "playwright@1.60.0": {
+      "last_modified": "2026-06-27T07:37:20Z",
+      "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#playwright",
       "source": "devbox-search",
-      "version": "1.57.0",
+      "version": "1.60.0",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/kc8brsb3rxnm8frvvscz120ni1q4g9p9-playwright-core-1.57.0",
+              "path": "/nix/store/k475yjrc8mcpk8qi6a6kh8l0279d527p-playwright-core-1.60.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/kc8brsb3rxnm8frvvscz120ni1q4g9p9-playwright-core-1.57.0"
+          "store_path": "/nix/store/k475yjrc8mcpk8qi6a6kh8l0279d527p-playwright-core-1.60.0"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/fxi21l80n6r8fzz256aqacnqwmc8xs5z-playwright-core-1.57.0",
+              "path": "/nix/store/pqynddlsbkzvg7m5h568nl2pgi31gh8a-playwright-core-1.60.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/fxi21l80n6r8fzz256aqacnqwmc8xs5z-playwright-core-1.57.0"
+          "store_path": "/nix/store/pqynddlsbkzvg7m5h568nl2pgi31gh8a-playwright-core-1.60.0"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/5ipmli7zddzdrj08hmfrd47z8p91vdzm-playwright-core-1.57.0",
+              "path": "/nix/store/8d5bvy1b5nng5ra8pz87sqy5wvyn504c-playwright-core-1.60.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/5ipmli7zddzdrj08hmfrd47z8p91vdzm-playwright-core-1.57.0"
+          "store_path": "/nix/store/8d5bvy1b5nng5ra8pz87sqy5wvyn504c-playwright-core-1.60.0"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/v1sdyc6af28hkns4hxxs06ik0crcfx87-playwright-core-1.57.0",
+              "path": "/nix/store/4zcnawj09ml5xc4w4szd9bay8mr6l54i-playwright-core-1.60.0",
               "default": true
             }
           ],
-          "store_path": "/nix/store/v1sdyc6af28hkns4hxxs06ik0crcfx87-playwright-core-1.57.0"
+          "store_path": "/nix/store/4zcnawj09ml5xc4w4szd9bay8mr6l54i-playwright-core-1.60.0"
         }
       }
     },
-    "python313Packages.playwright@1.57.0": {
-      "last_modified": "2026-01-09T13:41:53Z",
-      "resolved": "github:NixOS/nixpkgs/5f02c91314c8ba4afe83b256b023756412218535#python313Packages.playwright",
+    "python313Packages.playwright@1.60.0": {
+      "last_modified": "2026-06-27T07:37:20Z",
+      "resolved": "github:NixOS/nixpkgs/3d46470bb3030020f7e1361f33514854f5bfa86d#python313Packages.playwright",
       "source": "devbox-search",
-      "version": "1.57.0",
+      "version": "1.60.0",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/d6jawpkgxv5jyy3i6qgyvcid7z3c46gp-python3.13-playwright-1.57.0",
+              "path": "/nix/store/2lpdhdjxcrn9cg1mkdhfbaklr7hyjnpx-python3.13-playwright-1.60.0",
               "default": true
             },
             {
               "name": "dist",
-              "path": "/nix/store/pgrz1bri9hk2y4b49iy7mb00z7gzm3iw-python3.13-playwright-1.57.0-dist"
+              "path": "/nix/store/4axd3zs2bvwb26hw0683z5ax8a6ll5mr-python3.13-playwright-1.60.0-dist"
             }
           ],
-          "store_path": "/nix/store/d6jawpkgxv5jyy3i6qgyvcid7z3c46gp-python3.13-playwright-1.57.0"
+          "store_path": "/nix/store/2lpdhdjxcrn9cg1mkdhfbaklr7hyjnpx-python3.13-playwright-1.60.0"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/vdcbdf0wgqg6764n22nnw93954yxiq2x-python3.13-playwright-1.57.0",
+              "path": "/nix/store/qrsif0m5rs0viz4zz2z154is34y07107-python3.13-playwright-1.60.0",
               "default": true
             },
             {
               "name": "dist",
-              "path": "/nix/store/f8lvqbl036r7biv06mjsl52r0lfmyrl5-python3.13-playwright-1.57.0-dist"
+              "path": "/nix/store/7h0apaccvadmjdblqn6h9jcnd8dihc51-python3.13-playwright-1.60.0-dist"
             }
           ],
-          "store_path": "/nix/store/vdcbdf0wgqg6764n22nnw93954yxiq2x-python3.13-playwright-1.57.0"
+          "store_path": "/nix/store/qrsif0m5rs0viz4zz2z154is34y07107-python3.13-playwright-1.60.0"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/n1h48zlkz9m7z54zdc7yg21pj4rbdsgk-python3.13-playwright-1.57.0",
+              "path": "/nix/store/149yzk9llv2zzbx8z6d09hqr56g1iz5c-python3.13-playwright-1.60.0",
               "default": true
             },
             {
               "name": "dist",
-              "path": "/nix/store/jj79x66j9lwl7v49xdkqvpx2ks0krb71-python3.13-playwright-1.57.0-dist"
+              "path": "/nix/store/y7g45440rxvi1jjj5wwcx9kw75qsf2bc-python3.13-playwright-1.60.0-dist"
             }
           ],
-          "store_path": "/nix/store/n1h48zlkz9m7z54zdc7yg21pj4rbdsgk-python3.13-playwright-1.57.0"
+          "store_path": "/nix/store/149yzk9llv2zzbx8z6d09hqr56g1iz5c-python3.13-playwright-1.60.0"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/dsh2h4c1jqcf489avzvxyldcn3870wa9-python3.13-playwright-1.57.0",
+              "path": "/nix/store/3c9jw0srakpf22fx36bzyiw76fvkx18p-python3.13-playwright-1.60.0",
               "default": true
             },
             {
               "name": "dist",
-              "path": "/nix/store/qyjqvkg5r8z1j2iqcjsd8nnx1fdibh6k-python3.13-playwright-1.57.0-dist"
+              "path": "/nix/store/g24dpk9dq8q4hwqb75rxg3n9h31g9pqb-python3.13-playwright-1.60.0-dist"
             }
           ],
-          "store_path": "/nix/store/dsh2h4c1jqcf489avzvxyldcn3870wa9-python3.13-playwright-1.57.0"
+          "store_path": "/nix/store/3c9jw0srakpf22fx36bzyiw76fvkx18p-python3.13-playwright-1.60.0"
         }
       }
     }
